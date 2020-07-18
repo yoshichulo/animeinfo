@@ -1,20 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="app-title-container">
+    <ion-label>
+      AnimeInfo
+    </ion-label>
   </div>
+  <div class="container">
+    <ion-label class="title-container">
+      <span style="color: red">▶</span> Nuevos animes
+    </ion-label>
+  </div>
+  <ion-slides>
+
+    <ion-slide *ngFor="let anime of animes">
+      <div class="slide">
+        <img [src]="'https://animeblix.com' + anime.image_url" class="anime-cover-img"/>
+        <div class="anime-description-container">
+          <h2>{{ anime.title }}</h2>
+          <p>{{ anime.description.length > 200 ? anime.description.slice(0, 200) + '...' : anime.description }}</p>
+        </div>
+      </div>
+    </ion-slide>
+
+
+  </ion-slides>
 </ion-content>
+
+<style>
+  ion-content {
+    --background: #1d202d;
+  }
+</style>

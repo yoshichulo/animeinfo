@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../UserService';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,19 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  animes: any;
+  constructor(public userService: UserService) {}
 
-  constructor() {}
-
+  ionViewDidEnter() {
+    this.userService.getUsers()
+        .subscribe(
+            (data) => {
+              this.animes = data;
+              console.log(this.animes);
+            },
+            (error) => {
+              console.error(error);
+            }
+        );
+  }
 }
